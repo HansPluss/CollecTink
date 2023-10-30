@@ -1,0 +1,172 @@
+[gd_scene load_steps=22 format=3 uid="uid://dmv6t6teo8qwh"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerMovement.gd" id="1_hffv1"]
+[ext_resource type="Script" path="res://Scripts/Gamemanager.gd" id="1_t6k3w"]
+[ext_resource type="Material" uid="uid://cljp7ma71p2xg" path="res://Materials/Debug01.tres" id="1_y2sa7"]
+[ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="2_5thy0"]
+[ext_resource type="Script" path="res://Scripts/PicknDrop.gd" id="3_taxcc"]
+[ext_resource type="Script" path="res://Levels/TinkSpawner.gd" id="3_yuxxd"]
+[ext_resource type="Material" uid="uid://b33f3xpequ14g" path="res://Materials/Red.tres" id="4_8domh"]
+[ext_resource type="PackedScene" uid="uid://b32k2b8gk0b0t" path="res://Models/Debugbox.glb" id="8_psly4"]
+[ext_resource type="PackedScene" uid="uid://cusds8t1r651r" path="res://Prefabs/refinery.tscn" id="10_i2n8v"]
+[ext_resource type="Script" path="res://Scripts/refinery.gd" id="12_i2dgt"]
+[ext_resource type="PackedScene" uid="uid://cgseple2jf12o" path="res://Models/Mountain.glb" id="13_ebb0l"]
+[ext_resource type="PackedScene" uid="uid://cu6p70t5s3jxd" path="res://UI/UI.tscn" id="14_4cgma"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jnjyy"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_kmhv6"]
+sky_material = SubResource("ProceduralSkyMaterial_jnjyy")
+
+[sub_resource type="Environment" id="Environment_rt3np"]
+background_mode = 2
+sky = SubResource("Sky_kmhv6")
+tonemap_mode = 2
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ded4y"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jw35t"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_e2wii"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r8hw0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tcewl"]
+size = Vector3(2.0514, 1, 2.77688)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nb6rm"]
+size = Vector3(4.70687, 1.60797, 1.97485)
+
+[node name="MainNode" type="Node3D" node_paths=PackedStringArray("ref", "ui")]
+script = ExtResource("1_t6k3w")
+ref = NodePath("Refinery/Area3D2/FeedingSpot")
+ui = NodePath("UI")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rt3np")
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(24.0076, 0, 0, 0, 0.642751, 0, 0, 0, 28.9724, 0, -2.0195, 0)
+material_override = ExtResource("1_y2sa7")
+use_collision = true
+size = Vector3(9.8638, 1, 8.42776)
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.720888, 0)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_hffv1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("CapsuleMesh_ded4y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_jw35t")
+
+[node name="Head" type="Node3D" parent="Player"]
+
+[node name="Camera3D" type="Camera3D" parent="Player/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0430226, 0.667941, -0.0247355)
+fov = 90.0
+script = ExtResource("2_5thy0")
+camera_path = NodePath(".")
+
+[node name="Interaction" type="RayCast3D" parent="Player/Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0430226, 0.0465076, 0.0247355)
+target_position = Vector3(0, 0, -4.51)
+collision_mask = 5
+script = ExtResource("3_taxcc")
+
+[node name="Hand" type="Marker3D" parent="Player/Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.22633)
+
+[node name="Spanwers" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.22231, 2.05075, 0)
+
+[node name="Spawner" type="Node3D" parent="Spanwers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.17677, 2.47903, -0.326584)
+visible = false
+script = ExtResource("3_yuxxd")
+
+[node name="Timer" type="Timer" parent="Spanwers/Spawner"]
+wait_time = 2.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Spanwers/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.130801, 0)
+material_override = ExtResource("4_8domh")
+mesh = SubResource("BoxMesh_e2wii")
+
+[node name="DebugBox" type="RigidBody3D" parent="." groups=["Tink", "pickable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08937, -0.49289, 4.78995)
+collision_layer = 4
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DebugBox"]
+shape = SubResource("BoxShape3D_r8hw0")
+
+[node name="Mesh" parent="DebugBox" instance=ExtResource("8_psly4")]
+transform = Transform3D(0.546959, 0, 0, 0, 0.546959, 0, 0, 0, 0.546959, -0.0336614, -0.00801528, 0.0094986)
+
+[node name="Refinery" parent="." instance=ExtResource("10_i2n8v")]
+transform = Transform3D(0.0158572, 0, 0.486986, 0, 0.487244, 0, -0.486986, 0, 0.0158572, 0.212083, -1.45794, 8.09562)
+
+[node name="Area3D2" type="Area3D" parent="Refinery"]
+transform = Transform3D(0.999959, -0.00148463, 0.00895862, -0.000337172, 0.979797, 0.200008, -0.00907453, -0.200003, 0.979754, -9.38773e-07, 0.566234, 3.02678)
+collision_layer = 6
+collision_mask = 6
+priority = 1
+
+[node name="FeedingSpot" type="CollisionShape3D" parent="Refinery/Area3D2"]
+transform = Transform3D(1, 9.31323e-10, 1.86265e-09, 0, 1, 2.39961e-08, 0, -2.11003e-08, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_tcewl")
+script = ExtResource("12_i2dgt")
+
+[node name="UI" parent="." instance=ExtResource("14_4cgma")]
+layer = 4
+
+[node name="TheLevel" type="Node3D" parent="."]
+
+[node name="Mountain" parent="TheLevel" instance=ExtResource("13_ebb0l")]
+transform = Transform3D(55.4496, 0, 0, 0, 55.4496, 0, 0, 0, 55.4496, 3.30482, -3.31464, -172.44)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TheLevel/Mountain"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheLevel/Mountain/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.705431, 0)
+shape = SubResource("BoxShape3D_nb6rm")
+
+[node name="Mountain2" parent="TheLevel" instance=ExtResource("13_ebb0l")]
+transform = Transform3D(-55.4496, 0, -4.84756e-06, 0, 55.4496, 0, 4.84756e-06, 0, -55.4496, 3.30482, -3.31464, 167.56)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TheLevel/Mountain2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheLevel/Mountain2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.705431, 0)
+shape = SubResource("BoxShape3D_nb6rm")
+
+[node name="Mountain3" parent="TheLevel" instance=ExtResource("13_ebb0l")]
+transform = Transform3D(7.27134e-06, 0, -55.4496, 0, 55.4496, 0, 55.4496, 0, 7.27134e-06, 152.853, -3.31464, 2.56047)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TheLevel/Mountain3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheLevel/Mountain3/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.705431, 0)
+shape = SubResource("BoxShape3D_nb6rm")
+
+[node name="Mountain4" parent="TheLevel" instance=ExtResource("13_ebb0l")]
+transform = Transform3D(7.27134e-06, 0, -55.4496, 0, 55.4496, 0, 55.4496, 0, 7.27134e-06, -162.147, -3.31464, 2.56047)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TheLevel/Mountain4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheLevel/Mountain4/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.705431, 0)
+shape = SubResource("BoxShape3D_nb6rm")
+
+[connection signal="timeout" from="Spanwers/Spawner/Timer" to="Spanwers/Spawner" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Refinery/Area3D2" to="Refinery/Area3D2/FeedingSpot" method="_on_area_3d_body_entered"]

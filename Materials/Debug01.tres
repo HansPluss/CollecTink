@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://cljp7ma71p2xg"]
+
+[ext_resource type="Texture2D" uid="uid://cuko3g871pjua" path="res://Textures/DebugTexture02.png" id="1_rdlci"]
+[ext_resource type="Texture2D" uid="uid://drnqoau80bbpy" path="res://Textures/Debugtexture01.png" id="2_ed850"]
+
+[resource]
+shading_mode = 0
+specular_mode = 1
+albedo_texture = ExtResource("1_rdlci")
+refraction_scale = 1.0
+refraction_texture = ExtResource("2_ed850")
+refraction_texture_channel = 1
+texture_filter = 0

@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbptnfd5hgvmt"]
+
+[ext_resource type="Script" path="res://Scripts/TestTink.gd" id="1_c1t16"]
+[ext_resource type="Script" path="res://Scripts/DespawnTimer.gd" id="1_qtann"]
+[ext_resource type="Material" uid="uid://dpp3nbdgbdql3" path="res://Materials/Green.tres" id="2_7bdhk"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_juuwr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a4aoe"]
+
+[node name="TestTink" type="Node3D"]
+script = ExtResource("1_qtann")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+collision_layer = 4
+collision_mask = 7
+slide_on_ceiling = false
+script = ExtResource("1_c1t16")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+material_override = ExtResource("2_7bdhk")
+mesh = SubResource("SphereMesh_juuwr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("SphereShape3D_a4aoe")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 7.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

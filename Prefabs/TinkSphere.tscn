@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxwwwaobbdf7l"]
+
+[ext_resource type="Material" uid="uid://dpp3nbdgbdql3" path="res://Materials/Green.tres" id="1_7kka6"]
+[ext_resource type="Script" path="res://Scripts/DespawnTimer.gd" id="1_x2s56"]
+[ext_resource type="Script" path="res://Scripts/Tinksphere.gd" id="2_q0b2e"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l2ani"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jhkyt"]
+radius = 0.61239
+
+[sub_resource type="SphereMesh" id="SphereMesh_yr2fa"]
+
+[node name="TinkSphere" type="Node3D" groups=["pickable"]]
+script = ExtResource("1_x2s56")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." groups=["pickable"]]
+collision_layer = 4
+collision_mask = 7
+mass = 19.2
+physics_material_override = SubResource("PhysicsMaterial_l2ani")
+gravity_scale = 0.5
+script = ExtResource("2_q0b2e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" groups=["pickable"]]
+transform = Transform3D(1.59053, 0, 0, 0, 1.59053, 0, 0, 0, 1.59053, 0.0252123, -0.00347459, -0.0118318)
+shape = SubResource("SphereShape3D_jhkyt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" groups=["pickable"]]
+transform = Transform3D(1.59053, 0, 0, 0, 1.59053, 0, 0, 0, 1.59053, 0.0252123, -0.00347459, -0.0118318)
+material_override = ExtResource("1_7kka6")
+mesh = SubResource("SphereMesh_yr2fa")
+skeleton = NodePath("../..")
+
+[node name="Timer" type="Timer" parent="." groups=["pickable"]]
+wait_time = 4096.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,116 @@
+[gd_scene load_steps=19 format=3 uid="uid://dmv6t6teo8qwh"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerMovement.gd" id="1_hffv1"]
+[ext_resource type="Script" path="res://Scripts/Gamemanager.gd" id="1_t6k3w"]
+[ext_resource type="Material" uid="uid://cljp7ma71p2xg" path="res://Materials/Debug01.tres" id="1_y2sa7"]
+[ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="2_5thy0"]
+[ext_resource type="Script" path="res://Scripts/PicknDrop.gd" id="3_taxcc"]
+[ext_resource type="Script" path="res://Levels/TinkSpawner.gd" id="3_yuxxd"]
+[ext_resource type="Material" uid="uid://b33f3xpequ14g" path="res://Materials/Red.tres" id="4_8domh"]
+[ext_resource type="PackedScene" uid="uid://r54632ecb422" path="res://Prefabs/TinkSphere.tscn" id="4_64sn4"]
+[ext_resource type="PackedScene" uid="uid://b32k2b8gk0b0t" path="res://Models/Debugbox.glb" id="8_psly4"]
+[ext_resource type="PackedScene" uid="uid://cusds8t1r651r" path="res://Prefabs/refinery.tscn" id="10_i2n8v"]
+[ext_resource type="PackedScene" uid="uid://cu6p70t5s3jxd" path="res://UI/UI.tscn" id="14_4cgma"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jnjyy"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_kmhv6"]
+sky_material = SubResource("ProceduralSkyMaterial_jnjyy")
+
+[sub_resource type="Environment" id="Environment_rt3np"]
+background_mode = 2
+sky = SubResource("Sky_kmhv6")
+tonemap_mode = 2
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ded4y"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jw35t"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_e2wii"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r8hw0"]
+
+[node name="MainNode" type="Node3D"]
+script = ExtResource("1_t6k3w")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rt3np")
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(8.26301, 0, 0, 0, 0.221224, 0, 0, 0, 9.97181, 0, -2.0195, 0)
+material_override = ExtResource("1_y2sa7")
+use_collision = true
+size = Vector3(9.8638, 1, 8.42776)
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.720888, 0)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_hffv1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("CapsuleMesh_ded4y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_jw35t")
+
+[node name="Head" type="Node3D" parent="Player"]
+
+[node name="Camera3D" type="Camera3D" parent="Player/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0430226, 0.667941, -0.0247355)
+fov = 90.0
+script = ExtResource("2_5thy0")
+camera_path = NodePath(".")
+
+[node name="Interaction" type="RayCast3D" parent="Player/Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0430226, 0.0465076, 0.0247355)
+target_position = Vector3(0, 0, -4.51)
+collision_mask = 5
+script = ExtResource("3_taxcc")
+
+[node name="Hand" type="Marker3D" parent="Player/Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.22633)
+
+[node name="Spanwers" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05075, 0)
+
+[node name="Spawner" type="Node3D" parent="Spanwers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.17677, 2.47903, -0.326584)
+visible = false
+script = ExtResource("3_yuxxd")
+TinkObj = ExtResource("4_64sn4")
+
+[node name="Timer" type="Timer" parent="Spanwers/Spawner"]
+wait_time = 2.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Spanwers/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.130801, 0)
+material_override = ExtResource("4_8domh")
+mesh = SubResource("BoxMesh_e2wii")
+
+[node name="TinkSphere" parent="." instance=ExtResource("4_64sn4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.7722, 1.71993, -5.51679)
+
+[node name="DebugBox" type="RigidBody3D" parent="." groups=["Tink", "pickable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.91695, -1.06219, 3.33121)
+collision_layer = 4
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DebugBox"]
+shape = SubResource("BoxShape3D_r8hw0")
+
+[node name="Mesh" parent="DebugBox" instance=ExtResource("8_psly4")]
+transform = Transform3D(0.546959, 0, 0, 0, 0.546959, 0, 0, 0, 0.546959, -0.0336614, -0.00801528, 0.0094986)
+
+[node name="Refinery" parent="." instance=ExtResource("10_i2n8v")]
+transform = Transform3D(0.0158572, 0, 0.486986, 0, 0.487244, 0, -0.486986, 0, 0.0158572, 0.212083, -1.45794, 8.09562)
+
+[node name="UI" parent="." instance=ExtResource("14_4cgma")]
+
+[connection signal="timeout" from="Spanwers/Spawner/Timer" to="Spanwers/Spawner" method="_on_timer_timeout"]
