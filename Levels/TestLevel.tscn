@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dmv6t6teo8qwh"]
+[gd_scene load_steps=25 format=3 uid="uid://dmv6t6teo8qwh"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerMovement.gd" id="1_hffv1"]
 [ext_resource type="Script" path="res://Scripts/Gamemanager.gd" id="1_t6k3w"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://Levels/TinkSpawner.gd" id="3_yuxxd"]
 [ext_resource type="Material" uid="uid://b33f3xpequ14g" path="res://Materials/Red.tres" id="4_8domh"]
 [ext_resource type="PackedScene" uid="uid://b32k2b8gk0b0t" path="res://Models/Debugbox.glb" id="8_psly4"]
+[ext_resource type="PackedScene" uid="uid://cjlgko32wqjbj" path="res://Models/GlimGlab.glb" id="9_lc33a"]
+[ext_resource type="PackedScene" uid="uid://b767wwpoxr77s" path="res://Prefabs/dimetal.tscn" id="9_wancc"]
 [ext_resource type="PackedScene" uid="uid://cusds8t1r651r" path="res://Prefabs/refinery.tscn" id="10_i2n8v"]
 [ext_resource type="Script" path="res://Scripts/refinery.gd" id="12_i2dgt"]
 [ext_resource type="PackedScene" uid="uid://cgseple2jf12o" path="res://Models/Mountain.glb" id="13_ebb0l"]
@@ -32,6 +34,10 @@ tonemap_mode = 2
 [sub_resource type="BoxMesh" id="BoxMesh_e2wii"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r8hw0"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lk63y"]
+height = 0.974767
+radius = 0.116447
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tcewl"]
 size = Vector3(2.0514, 1, 2.77688)
@@ -103,7 +109,7 @@ material_override = ExtResource("4_8domh")
 mesh = SubResource("BoxMesh_e2wii")
 
 [node name="DebugBox" type="RigidBody3D" parent="." groups=["Tink", "pickable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.19225, -0.992, 1.93048)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.19225, -0.992, 4.96814)
 collision_layer = 4
 collision_mask = 7
 
@@ -113,16 +119,20 @@ shape = SubResource("BoxShape3D_r8hw0")
 [node name="Mesh" parent="DebugBox" instance=ExtResource("8_psly4")]
 transform = Transform3D(0.546959, 0, 0, 0, 0.546959, 0, 0, 0, 0.546959, -0.0336614, -0.00801528, 0.0094986)
 
-[node name="DebugBox(METAL)" type="RigidBody3D" parent="." groups=["Dimetal", "pickable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.08937, -0.49289, 4.78995)
+[node name="Glim" type="RigidBody3D" parent="." groups=["Glim", "pickable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.74008, -0.992, 0.0466609)
 collision_layer = 4
 collision_mask = 7
+mass = 185.57
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DebugBox(METAL)"]
-shape = SubResource("BoxShape3D_r8hw0")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Glim"]
+shape = SubResource("CylinderShape3D_lk63y")
 
-[node name="Mesh" parent="DebugBox(METAL)" instance=ExtResource("8_psly4")]
-transform = Transform3D(0.546959, 0, 0, 0, 0.546959, 0, 0, 0, 0.546959, -0.0336614, -0.00801528, 0.0094986)
+[node name="GlimGlab" parent="Glim" instance=ExtResource("9_lc33a")]
+transform = Transform3D(0.125385, 0, 0, 0, 0.125385, 0, 0, 0, 0.125385, 0, 0, 0)
+
+[node name="Dimetal" parent="." instance=ExtResource("9_wancc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.08937, -0.49289, -4.64876)
 
 [node name="Refinery" parent="." instance=ExtResource("10_i2n8v")]
 transform = Transform3D(0.0158572, 0, 0.486986, 0, 0.487244, 0, -0.486986, 0, 0.0158572, 0.212083, -1.45794, 8.09562)

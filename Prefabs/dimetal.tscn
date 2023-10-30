@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b767wwpoxr77s"]
+
+[ext_resource type="PackedScene" uid="uid://ce5coh7vvplkf" path="res://Models/Dimrock.glb" id="1_wyaxk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r8hw0"]
+
+[node name="Dimetal" type="RigidBody3D" groups=["Dimetal", "pickable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.08937, -0.49289, 0.00394869)
+collision_layer = 4
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_r8hw0")
+
+[node name="Dimrock" parent="." instance=ExtResource("1_wyaxk")]
+transform = Transform3D(0.556347, 0, 0, 0, 0.556347, 0, 0, 0, 0.556347, 0, 0, 0)

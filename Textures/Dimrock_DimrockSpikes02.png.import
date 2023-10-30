@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqrvo8fvhnfr3"
-path.s3tc="res://.godot/imported/refinery_refinery02.png-4a02b12d4b50d616858d271dbc1396f9.s3tc.ctex"
+uid="uid://3b8h6mym7c6o"
+path.s3tc="res://.godot/imported/Dimrock_DimrockSpikes02.png-3e35dccce15d2cf353e853844af27f40.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://Models/refinery_refinery02.png"
-dest_files=["res://.godot/imported/refinery_refinery02.png-4a02b12d4b50d616858d271dbc1396f9.s3tc.ctex"]
+source_file="res://Textures/Dimrock_DimrockSpikes02.png"
+dest_files=["res://.godot/imported/Dimrock_DimrockSpikes02.png-3e35dccce15d2cf353e853844af27f40.s3tc.ctex"]
 
 [params]
 
