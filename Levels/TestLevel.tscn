@@ -92,6 +92,15 @@ script = ExtResource("3_taxcc")
 [node name="Hand" type="Marker3D" parent="Player/Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.22633)
 
+[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="Player/Head/Camera3D"]
+node_a = NodePath("../StaticBody3D")
+linear_limit_x/enabled = false
+linear_limit_y/enabled = false
+linear_limit_z/enabled = false
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Player/Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.21828)
+
 [node name="Spanwers" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.22231, 2.05075, 0)
 
@@ -112,6 +121,7 @@ mesh = SubResource("BoxMesh_e2wii")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.19225, -0.992, 4.96814)
 collision_layer = 4
 collision_mask = 7
+mass = 1000.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DebugBox"]
 shape = SubResource("BoxShape3D_r8hw0")
@@ -120,7 +130,7 @@ shape = SubResource("BoxShape3D_r8hw0")
 transform = Transform3D(0.546959, 0, 0, 0, 0.546959, 0, 0, 0, 0.546959, -0.0336614, -0.00801528, 0.0094986)
 
 [node name="Glim" type="RigidBody3D" parent="." groups=["Glim", "pickable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.74008, -0.992, 0.0466609)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.7603, -0.992, -3.1575)
 collision_layer = 4
 collision_mask = 7
 mass = 185.57

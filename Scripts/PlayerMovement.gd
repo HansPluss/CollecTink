@@ -14,6 +14,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
+@onready var joint = $Head/Camera3D/Generic6DOFJoint3D
+@onready var static_body = $Head/Camera3D/StaticBody3D
 
 @onready var interaction = $Head/Camera3D/Interaction
 @onready var hand = $Head/Camera3D/Hand
@@ -21,30 +23,44 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var picked_object
 var pull_strength = 5.5
 
-
+var rotationPower = 0.05
+var locked = false
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
-		head.rotate_y(-event.relative.x * SENSITIVITY)
-		camera.rotate_x(-event.relative.y * SENSITIVITY)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
+		if !locked:
+			head.rotate_y(-event.relative.x * SENSITIVITY)
+			camera.rotate_x(-event.relative.y * SENSITIVITY)
+			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
+		
 	if Input.is_action_just_pressed("leftClick"):
 		if picked_object == null:
 			_PickObjects()
 		elif picked_object != null:
 			_DropObjects()
+	if Input.is_action_pressed("rightClick") && picked_object != null:
+		locked = true
+		rotate_object((event))
+	if Input.is_action_just_released("rightClick"):
+		locked = false
 		
-
+func rotate_object(event):
+	if picked_object != null:
+		if event is InputEventMouseMotion:
+			static_body.rotate_x(deg_to_rad(event.relative.y * rotationPower))
+			static_body.rotate_y(deg_to_rad(event.relative.x * rotationPower))
 func _PickObjects():
 	var collider = interaction.get_collider()
 	if collider != null and collider.is_in_group("pickable"):
 		picked_object = collider
+		joint.set_node_b(picked_object.get_path())
 func _DropObjects():
 	if picked_object != null:
 		picked_object = null
+		joint.set_node_b(joint.get_path())
 func _process(_delta):
 	if Input.is_action_just_pressed("ESC"):
 		get_tree().quit()
