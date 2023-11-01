@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dmv6t6teo8qwh"]
+[gd_scene load_steps=34 format=3 uid="uid://dmv6t6teo8qwh"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerMovement.gd" id="1_hffv1"]
 [ext_resource type="Script" path="res://Scripts/Gamemanager.gd" id="1_t6k3w"]
@@ -9,11 +9,15 @@
 [ext_resource type="Material" uid="uid://b33f3xpequ14g" path="res://Materials/Red.tres" id="4_8domh"]
 [ext_resource type="PackedScene" uid="uid://b32k2b8gk0b0t" path="res://Models/Debugbox.glb" id="8_psly4"]
 [ext_resource type="PackedScene" uid="uid://cjlgko32wqjbj" path="res://Models/GlimGlab.glb" id="9_lc33a"]
+[ext_resource type="Script" path="res://Levels/OutlineHighlight.gd" id="9_svjwq"]
 [ext_resource type="PackedScene" uid="uid://b767wwpoxr77s" path="res://Prefabs/dimetal.tscn" id="9_wancc"]
+[ext_resource type="Material" uid="uid://b301ue1pb6o61" path="res://Materials/black.tres" id="10_f7rlw"]
 [ext_resource type="PackedScene" uid="uid://cusds8t1r651r" path="res://Prefabs/refinery.tscn" id="10_i2n8v"]
+[ext_resource type="PackedScene" uid="uid://4u2cn2dljn4" path="res://Models/PickAxe.glb" id="11_ancov"]
 [ext_resource type="Script" path="res://Scripts/refinery.gd" id="12_i2dgt"]
 [ext_resource type="PackedScene" uid="uid://cgseple2jf12o" path="res://Models/Mountain.glb" id="13_ebb0l"]
 [ext_resource type="PackedScene" uid="uid://cu6p70t5s3jxd" path="res://UI/UI.tscn" id="14_4cgma"]
+[ext_resource type="ArrayMesh" uid="uid://by17rlkyv74cu" path="res://Models/PickAxe.obj" id="17_o6not"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jnjyy"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -34,6 +38,21 @@ tonemap_mode = 2
 [sub_resource type="BoxMesh" id="BoxMesh_e2wii"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r8hw0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_j5q7v"]
+material = ExtResource("10_f7rlw")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_p5mlh"]
+points = PackedVector3Array(1.49002, 2.80789, -0.240454, 0.717907, 3.83709, 0.145641, 0.717907, 3.83709, -0.111693, 2.90568, 2.55047, 0.145641, 0.589108, 2.80789, 0.145641, 2.77688, 2.16434, -0.111693, 2.00477, 3.32224, -0.111693, 0.589108, 2.9366, -0.240454, 2.51951, 2.16434, 0.145641, 0.589108, 3.70838, -0.240454, 2.90568, 2.55047, -0.111693, 1.61882, 3.32224, -0.240454, 2.51951, 2.16434, -0.111693, 2.13334, 3.19353, 0.145641, 0.589108, 2.80789, -0.111693, 0.589108, 3.83709, 0.145641, 2.90568, 2.29305, 0.145641, 1.74739, 3.45096, 0.0169176, 2.90568, 2.29305, -0.111693, 2.64785, 2.80789, -0.111693, 1.10408, 3.70838, -0.111693, 0.717907, 3.70838, -0.240454, 2.77688, 2.16434, 0.145641, 1.36168, 3.57967, 0.145641, 1.10408, 2.80789, -0.240454, 1.61882, 2.9366, -0.240454, 2.64785, 2.80789, 0.0169176, 1.74739, 3.45096, -0.111693, 2.00477, 3.32224, 0.0169176, 0.589108, 3.83709, -0.111693)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ec2xc"]
+points = PackedVector3Array(0.589007, 3.70829, -0.240303, -0.440379, 2.03568, -0.240303, -0.440379, 2.03568, 0.274188, -0.440379, 4.09465, -0.11163, 0.202887, 3.83708, 0.531636, 0.460233, 2.03568, 0.145515, 0.0743141, 2.03568, -0.49775, -0.182932, 3.96566, -0.49775, -0.440379, 3.83708, 0.402862, 0.460233, 4.09465, 0.145515, -0.182932, 2.67921, 0.531636, 0.33156, 2.03568, 0.402862, 0.202887, 3.96566, -0.49775, 0.589007, 3.83708, 0.145515, 0.460233, 2.67921, -0.368976, -0.311605, 2.80799, -0.49775, -0.182932, 4.09465, 0.402862, -0.440379, 3.96566, -0.368976, 0.589007, 2.67921, 0.145515, 0.460233, 2.03568, -0.240303, 0.460233, 3.83708, 0.402862, 0.202887, 2.67921, 0.531636, 0.33156, 2.80799, -0.49775, 0.202887, 4.09465, -0.368976, -0.182932, 3.83708, 0.531636, -0.311605, 2.03568, 0.402862, 0.460233, 2.67921, 0.402862, 0.589007, 3.06516, -0.240303, -0.440379, 2.67921, 0.402862, 0.202887, 4.09465, 0.402862, 0.460233, 4.09465, -0.11163, 0.33156, 3.70829, -0.49775)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_trx5o"]
+points = PackedVector3Array(-2.6282, 2.80789, -0.111693, -0.356469, 3.89456, 0.158906, -0.378069, 3.87978, -0.114974, -0.312322, 2.64548, 0.165877, -0.335059, 2.79127, -0.257099, -2.88575, 2.16434, 0.145641, -2.49919, 2.16434, -0.111693, -1.59921, 3.32224, -0.240454, -2.11334, 3.19353, 0.145641, -0.31255, 3.78242, -0.260653, -1.72702, 3.45096, -0.111693, -2.88575, 2.16434, -0.111693, -2.88575, 2.55047, 0.145641, -0.336275, 2.65178, -0.117172, -1.47019, 2.80789, -0.240454, -0.698027, 3.83709, 0.145641, -2.49919, 2.16434, 0.145641, -2.88575, 2.55047, -0.111693, -0.698027, 3.83709, -0.111693, -1.98457, 3.32224, 0.0169176, -0.698027, 3.70838, -0.240454, -1.98457, 3.32224, -0.111693, -1.34166, 3.57967, 0.145641, -2.75698, 2.67918, 0.145641, -1.08411, 3.70838, -0.111693, -1.72702, 3.45096, 0.0169176)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3jgk2"]
+points = PackedVector3Array(0.589108, -2.72586, 0.14544, -0.697876, -3.88445, -0.111554, -0.697876, -3.88445, 0.14544, -0.440379, 2.03547, -0.240429, 0.202861, -3.88445, -0.626549, 0.331484, 2.03547, 0.402937, 0.460359, 2.03547, -0.240429, -0.183007, -3.88445, 0.660435, -0.311756, 2.03547, 0.402937, 0.460359, -3.88445, 0.531686, -0.0543842, 2.03547, -0.4978, -0.440379, -2.85466, -0.4978, 0.589108, -3.88445, -0.369052, -0.311756, -4.01325, -0.4978, 0.0741126, -2.85466, 0.660435, -0.569127, -2.85466, 0.402937, -0.440379, 2.03547, 0.274314, -0.183007, -2.85466, -0.626549, 0.460359, -2.85466, -0.4978, 0.460359, 2.03547, 0.14544, -0.697876, -2.85466, -0.111554, 0.0741126, 2.03547, -0.4978, 0.460359, -2.85466, 0.531686, 0.589108, -3.88445, 0.274314, -0.183007, -2.85466, 0.660435, -0.697876, -2.85466, 0.14544, 0.331484, -4.01325, -0.4978, -0.440379, -3.88445, 0.531686, 0.202861, -2.85466, -0.626549, 0.589108, -2.85466, -0.369052, -0.569127, -2.85466, -0.369052, -0.440379, -3.88445, -0.4978)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_lk63y"]
 height = 0.974767
@@ -121,13 +140,61 @@ mesh = SubResource("BoxMesh_e2wii")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.19225, -0.992, 4.96814)
 collision_layer = 4
 collision_mask = 7
-mass = 1000.0
+mass = 163.29
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DebugBox"]
 shape = SubResource("BoxShape3D_r8hw0")
 
 [node name="Mesh" parent="DebugBox" instance=ExtResource("8_psly4")]
 transform = Transform3D(0.546959, 0, 0, 0, 0.546959, 0, 0, 0, 0.546959, -0.0336614, -0.00801528, 0.0094986)
+
+[node name="DebugBox2" type="RigidBody3D" parent="." groups=["Tink", "pickable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.98615, -0.992, -5.0031)
+collision_layer = 4
+collision_mask = 7
+mass = 106.6
+script = ExtResource("9_svjwq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DebugBox2"]
+shape = SubResource("BoxShape3D_r8hw0")
+
+[node name="Mesh" parent="DebugBox2" instance=ExtResource("8_psly4")]
+transform = Transform3D(0.546959, 0, 0, 0, 0.546959, 0, 0, 0, 0.546959, -0.0336614, -0.00801528, 0.0094986)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DebugBox2"]
+mesh = SubResource("BoxMesh_j5q7v")
+
+[node name="Pickaxe" type="RigidBody3D" parent="." groups=["pickable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.33439, -0.992, -5.0031)
+collision_layer = 4
+collision_mask = 7
+mass = 10.41
+gravity_scale = 5.74
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pickaxe"]
+transform = Transform3D(0.166408, 0, 0, 0, 0.166408, 0, 0, 0, 0.166408, 0, 0, 0)
+visible = false
+mesh = ExtResource("17_o6not")
+surface_material_override/0 = ExtResource("10_f7rlw")
+
+[node name="@CollisionShape3D@58469" type="CollisionShape3D" parent="Pickaxe"]
+transform = Transform3D(0.166408, 0, 0, 0, 0.166408, 0, 0, 0, 0.166408, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_p5mlh")
+
+[node name="_CollisionShape3D_58468" type="CollisionShape3D" parent="Pickaxe"]
+transform = Transform3D(0.166408, 0, 0, 0, 0.166408, 0, 0, 0, 0.166408, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_ec2xc")
+
+[node name="@CollisionShape3D@58467" type="CollisionShape3D" parent="Pickaxe"]
+transform = Transform3D(0.166408, 0, 0, 0, 0.166408, 0, 0, 0, 0.166408, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_trx5o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pickaxe"]
+transform = Transform3D(0.166408, 0, 0, 0, 0.166408, 0, 0, 0, 0.166408, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_3jgk2")
+
+[node name="PickAxe" parent="Pickaxe" instance=ExtResource("11_ancov")]
+transform = Transform3D(0.166317, 0, 0, 0, 0.166317, 0, 0, 0, 0.166317, 0, 0, 0)
 
 [node name="Glim" type="RigidBody3D" parent="." groups=["Glim", "pickable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.7603, -0.992, -3.1575)

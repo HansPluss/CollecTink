@@ -8,6 +8,7 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.08937, -0.49289, 0.00394869)
 collision_layer = 4
 collision_mask = 7
+mass = 108.9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_r8hw0")
