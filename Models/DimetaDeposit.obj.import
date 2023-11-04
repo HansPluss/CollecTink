@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bi38cf6kd8l01"
+path="res://.godot/imported/DimetaDeposit.obj-e8b10087f057d56cbf335eebafe44eaf.mesh"
+
+[deps]
+
+files=["res://.godot/imported/DimetaDeposit.obj-e8b10087f057d56cbf335eebafe44eaf.mesh"]
+
+source_file="res://Models/DimetaDeposit.obj"
+dest_files=["res://.godot/imported/DimetaDeposit.obj-e8b10087f057d56cbf335eebafe44eaf.mesh", "res://.godot/imported/DimetaDeposit.obj-e8b10087f057d56cbf335eebafe44eaf.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

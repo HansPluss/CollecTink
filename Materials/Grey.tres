@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://blcs71guuofjr"]
+
+[ext_resource type="Texture2D" uid="uid://b0aeb3pew8sbx" path="res://Textures/PickAxe_metal.png" id="1_3opms"]
+[ext_resource type="Texture2D" uid="uid://drnqoau80bbpy" path="res://Textures/Debugtexture01.png" id="2_bhhnb"]
+
+[resource]
+shading_mode = 0
+specular_mode = 1
+albedo_color = Color(0.247059, 0.247059, 0.247059, 1)
+albedo_texture = ExtResource("1_3opms")
+refraction_scale = 1.0
+refraction_texture = ExtResource("2_bhhnb")
+refraction_texture_channel = 1
+texture_filter = 0

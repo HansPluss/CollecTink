@@ -6,3 +6,4 @@
 next_pass = ExtResource("1_64y7j")
 shading_mode = 2
 albedo_color = Color(0, 0, 0, 1)
+grow = true

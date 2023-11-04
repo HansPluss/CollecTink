@@ -2,7 +2,7 @@
 
 [ext_resource type="ArrayMesh" uid="uid://curr6pvjd1m0" path="res://Models/refinery.obj" id="1_f2np4"]
 [ext_resource type="PackedScene" uid="uid://4fllo7akb7oa" path="res://Models/refinery.glb" id="2_qaaq1"]
-[ext_resource type="Material" uid="uid://b301ue1pb6o61" path="res://Materials/black.tres" id="3_6h7yl"]
+[ext_resource type="Material" uid="uid://blcs71guuofjr" path="res://Materials/Grey.tres" id="3_qkhi8"]
 [ext_resource type="Script" path="res://Scripts/refinery.gd" id="4_oqhp4"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_efdhx"]
@@ -26,7 +26,7 @@ shape = SubResource("ConcavePolygonShape3D_efdhx")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
 transform = Transform3D(0.358823, 0, 7.45058e-09, 0, 0.932636, 0, -7.45058e-09, 0, 0.358823, -0.282503, 2.24231, 0.990746)
-material_override = ExtResource("3_6h7yl")
+material_override = ExtResource("3_qkhi8")
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(0.999959, -0.00148463, 0.00895862, -0.000337172, 0.979797, 0.200008, -0.00907453, -0.200003, 0.979754, -9.38773e-07, 0.566234, 3.02678)

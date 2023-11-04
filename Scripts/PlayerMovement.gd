@@ -61,9 +61,10 @@ func _DropObjects():
 	if picked_object != null:
 		picked_object = null
 		joint.set_node_b(joint.get_path())
-func _process(_delta):
+func _process(delta):
 	if Input.is_action_just_pressed("ESC"):
 		get_tree().quit()
+
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -87,6 +88,8 @@ func _physics_process(delta):
 		else:
 			velocity.x = lerp(velocity.x, direction.x * moveSpeed, delta * 7.0)
 			velocity.z = lerp(velocity.z, direction.z * moveSpeed, delta * 7.0)
+			
+		
 	else:
 		velocity.x = lerp(velocity.x, direction.x * moveSpeed, delta * 2.0)
 		velocity.z = lerp(velocity.z, direction.z * moveSpeed, delta * 2.0)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=37 format=3 uid="uid://dmv6t6teo8qwh"]
+[gd_scene load_steps=38 format=3 uid="uid://dmv6t6teo8qwh"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerMovement.gd" id="1_hffv1"]
 [ext_resource type="Script" path="res://Scripts/Gamemanager.gd" id="1_t6k3w"]
 [ext_resource type="Material" uid="uid://cljp7ma71p2xg" path="res://Materials/Debug01.tres" id="1_y2sa7"]
+[ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="2_5thy0"]
 [ext_resource type="Script" path="res://Scripts/PicknDrop.gd" id="3_taxcc"]
 [ext_resource type="Script" path="res://Levels/TinkSpawner.gd" id="3_yuxxd"]
 [ext_resource type="Material" uid="uid://b33f3xpequ14g" path="res://Materials/Red.tres" id="4_8domh"]
@@ -91,10 +92,14 @@ size = Vector3(9.8638, 1, 8.42776)
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.720888, 0)
+collision_layer = 3
+collision_mask = 3
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
 script = ExtResource("1_hffv1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
-visible = false
 mesh = SubResource("CapsuleMesh_ded4y")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
@@ -104,8 +109,9 @@ shape = SubResource("CapsuleShape3D_jw35t")
 
 [node name="Camera3D" type="Camera3D" parent="Player/Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0430226, 0.667941, -0.0247355)
-current = true
 fov = 90.0
+script = ExtResource("2_5thy0")
+camera_path = NodePath(".")
 
 [node name="Interaction" type="RayCast3D" parent="Player/Head/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0430226, 0.0465076, 0.0247355)
