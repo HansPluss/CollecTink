@@ -1,8 +1,10 @@
-[gd_scene load_steps=41 format=3 uid="uid://dmv6t6teo8qwh"]
+[gd_scene load_steps=43 format=3 uid="uid://dmv6t6teo8qwh"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerMovement.gd" id="1_hffv1"]
 [ext_resource type="Script" path="res://Scripts/Gamemanager.gd" id="1_t6k3w"]
 [ext_resource type="Material" uid="uid://cljp7ma71p2xg" path="res://Materials/Debug01.tres" id="1_y2sa7"]
+[ext_resource type="Shader" path="res://Levels/skybox.gdshader" id="2_rv324"]
+[ext_resource type="Texture2D" uid="uid://cf52f0qmjc1w1" path="res://Textures/GlimGlab_lid.png" id="3_i1j8g"]
 [ext_resource type="Script" path="res://Scripts/PicknDrop.gd" id="3_taxcc"]
 [ext_resource type="Script" path="res://Levels/TinkSpawner.gd" id="3_yuxxd"]
 [ext_resource type="Material" uid="uid://b33f3xpequ14g" path="res://Materials/Red.tres" id="4_8domh"]
@@ -24,16 +26,19 @@
 [ext_resource type="PackedScene" uid="uid://m4syl4ec0gch" path="res://Models/DimetaDeposit.glb" id="20_gir3l"]
 [ext_resource type="PackedScene" uid="uid://ckvnoalfmmw10" path="res://Prefabs/Rocks/rock_01.tscn" id="20_xgqfl"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jnjyy"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hoq38"]
+shader = ExtResource("2_rv324")
+shader_parameter/horizoncolor = Color(0.133333, 0.560784, 0.447059, 1)
+shader_parameter/skycolor = Color(0.262745, 0.811765, 0.811765, 1)
+shader_parameter/skyTexture = ExtResource("3_i1j8g")
 
 [sub_resource type="Sky" id="Sky_kmhv6"]
-sky_material = SubResource("ProceduralSkyMaterial_jnjyy")
+sky_material = SubResource("ShaderMaterial_hoq38")
 
 [sub_resource type="Environment" id="Environment_rt3np"]
 background_mode = 2
 sky = SubResource("Sky_kmhv6")
+ambient_light_energy = 1.15
 tonemap_mode = 2
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ded4y"]
@@ -82,6 +87,8 @@ ui = NodePath("UI")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(0.439216, 0.619608, 0.65098, 1)
+light_angular_distance = 9.17
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -409,7 +416,7 @@ transform = Transform3D(0.609024, 0, -0.793151, 0, 1, 0, 0.793151, 0, 0.609024, 
 shape = SubResource("BoxShape3D_vhy0o")
 
 [node name="DimetaDeposit" parent="DimetalResourceNode" instance=ExtResource("20_gir3l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.991782, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.7359, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="DimetalResourceNode"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0202827, -1.02736, -0.124334)
