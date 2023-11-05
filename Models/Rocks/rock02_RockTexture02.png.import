@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dricbtak8j5my"
-path.s3tc="res://.godot/imported/DimetaDeposit_DimRock.png-4ecdcbf27d73a04e0418a3aa498f81ce.s3tc.ctex"
+uid="uid://bqfthyy31vk5u"
+path.s3tc="res://.godot/imported/rock02_RockTexture02.png-903270ac1f450b89607a5d328abf0fb0.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://Models/DimetaDeposit_DimRock.png"
-dest_files=["res://.godot/imported/DimetaDeposit_DimRock.png-4ecdcbf27d73a04e0418a3aa498f81ce.s3tc.ctex"]
+source_file="res://Models/Rocks/rock02_RockTexture02.png"
+dest_files=["res://.godot/imported/rock02_RockTexture02.png-903270ac1f450b89607a5d328abf0fb0.s3tc.ctex"]
 
 [params]
 

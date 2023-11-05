@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dmv6t6teo8qwh"]
+[gd_scene load_steps=41 format=3 uid="uid://dmv6t6teo8qwh"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerMovement.gd" id="1_hffv1"]
 [ext_resource type="Script" path="res://Scripts/Gamemanager.gd" id="1_t6k3w"]
@@ -16,9 +16,13 @@
 [ext_resource type="Script" path="res://Scripts/refinery.gd" id="12_i2dgt"]
 [ext_resource type="PackedScene" uid="uid://cgseple2jf12o" path="res://Models/Mountain.glb" id="13_ebb0l"]
 [ext_resource type="PackedScene" uid="uid://cu6p70t5s3jxd" path="res://UI/UI.tscn" id="14_4cgma"]
+[ext_resource type="PackedScene" uid="uid://653igsyx71wg" path="res://Prefabs/Rocks/rock_02.tscn" id="18_fxwtp"]
 [ext_resource type="Script" path="res://Levels/ResourceNode.gd" id="18_rsk5g"]
+[ext_resource type="PackedScene" uid="uid://78ky16pfywr3" path="res://Prefabs/Rocks/rock_03.tscn" id="19_chq8u"]
 [ext_resource type="ArrayMesh" uid="uid://bi38cf6kd8l01" path="res://Models/DimetaDeposit.obj" id="19_lq65w"]
+[ext_resource type="PackedScene" uid="uid://c26ydsf2ic7ow" path="res://Prefabs/Rocks/rock_04.tscn" id="20_b7o8g"]
 [ext_resource type="PackedScene" uid="uid://m4syl4ec0gch" path="res://Models/DimetaDeposit.glb" id="20_gir3l"]
+[ext_resource type="PackedScene" uid="uid://ckvnoalfmmw10" path="res://Prefabs/Rocks/rock_01.tscn" id="20_xgqfl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jnjyy"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -90,7 +94,7 @@ use_collision = true
 size = Vector3(9.8638, 1, 8.42776)
 
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.720888, 0)
+transform = Transform3D(1, -0.000119233, -6.29779e-05, 0.000119233, 1, -0.00013666, 6.29779e-05, 0.00013666, 1, 0, -0.720888, 0)
 script = ExtResource("1_hffv1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
@@ -268,8 +272,125 @@ transform = Transform3D(7.27134e-06, 0, -55.4496, 0, 55.4496, 0, 55.4496, 0, 7.2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.705431, 0)
 shape = SubResource("BoxShape3D_nb6rm")
 
+[node name="Rocks" type="Node3D" parent="TheLevel"]
+
+[node name="1_Rock01" parent="TheLevel/Rocks" instance=ExtResource("20_xgqfl")]
+transform = Transform3D(0.466155, 0, 0.884703, 0, 1, 0, -0.884703, 0, 0.466155, -9.57226, -1.33592, -7.38078)
+skeleton = NodePath("../../..")
+
+[node name="1_Rock02" parent="TheLevel/Rocks" instance=ExtResource("20_xgqfl")]
+transform = Transform3D(0.466155, 0, 0.884703, 0, 1, 0, -0.884703, 0, 0.466155, -56.0226, -1.33592, -27.0289)
+skeleton = NodePath("../../..")
+
+[node name="1_Rock03" parent="TheLevel/Rocks" instance=ExtResource("20_xgqfl")]
+transform = Transform3D(-0.38107, 0, 0.924546, 0, 1, 0, -0.924546, 0, -0.38107, -40.9535, -1.47711, -65.1275)
+skeleton = NodePath("../../..")
+
+[node name="1_Rock04" parent="TheLevel/Rocks" instance=ExtResource("20_xgqfl")]
+transform = Transform3D(-0.162758, 0, 0.986666, 0, 1, 0, -0.986666, 0, -0.162758, -18.1548, -1.33592, 66.7049)
+skeleton = NodePath("../../..")
+
+[node name="1_Rock07" parent="TheLevel/Rocks" instance=ExtResource("20_xgqfl")]
+transform = Transform3D(-0.162758, 0, 0.986666, 0, 1, 0, -0.986666, 0, -0.162758, 58.0859, -1.33592, 79.9583)
+skeleton = NodePath("../../..")
+
+[node name="1_Rock08" parent="TheLevel/Rocks" instance=ExtResource("20_xgqfl")]
+transform = Transform3D(-0.299807, 0, 1.81749, 0, 1.84205, 0, -1.81749, 0, -0.299807, 19.0859, -1.33592, 62.4963)
+skeleton = NodePath("../../..")
+
+[node name="1_Rock09" parent="TheLevel/Rocks" instance=ExtResource("20_xgqfl")]
+transform = Transform3D(-0.162758, 0, 0.986666, 0, 1, 0, -0.986666, 0, -0.162758, 54.6724, -1.33592, 41.7128)
+skeleton = NodePath("../../..")
+
+[node name="1_Rock10" parent="TheLevel/Rocks" instance=ExtResource("20_xgqfl")]
+transform = Transform3D(-0.162758, 0, 0.986666, 0, 1, 0, -0.986666, 0, -0.162758, 54.6724, -1.33592, -21.2978)
+skeleton = NodePath("../../..")
+
+[node name="1_Rock11" parent="TheLevel/Rocks" instance=ExtResource("20_xgqfl")]
+transform = Transform3D(-0.162758, 0, 0.986666, 0, 1, 0, -0.986666, 0, -0.162758, 19.542, -1.33592, -42.0816)
+skeleton = NodePath("../../..")
+
+[node name="1_Rock12" parent="TheLevel/Rocks" instance=ExtResource("20_xgqfl")]
+transform = Transform3D(-0.227247, 0, 1.37761, 0, 1.39623, 0, -1.37761, 0, -0.227247, 61.6306, -1.33592, -77.2001)
+skeleton = NodePath("../../..")
+
+[node name="1_Rock13" parent="TheLevel/Rocks" instance=ExtResource("20_xgqfl")]
+transform = Transform3D(-0.973463, 0, 0.228844, 0, 1, 0, -0.228844, 0, -0.973463, 27.8332, -1.33592, -77.0404)
+skeleton = NodePath("../../..")
+
+[node name="1_Rock14" parent="TheLevel/Rocks" instance=ExtResource("20_xgqfl")]
+transform = Transform3D(-0.973463, 0, 0.228844, 0, 1, 0, -0.228844, 0, -0.973463, -14.7925, -1.33592, -77.0404)
+skeleton = NodePath("../../..")
+
+[node name="1_Rock05" parent="TheLevel/Rocks" instance=ExtResource("20_xgqfl")]
+transform = Transform3D(-0.162758, 0, 0.986666, 0, 1, 0, -0.986666, 0, -0.162758, -67.0435, -1.33592, 79.0975)
+skeleton = NodePath("../../..")
+
+[node name="1_Rock06" parent="TheLevel/Rocks" instance=ExtResource("20_xgqfl")]
+transform = Transform3D(-0.862089, 0, 0.506756, 0, 1, 0, -0.506756, 0, -0.862089, -78.0418, -1.47711, 39.6309)
+skeleton = NodePath("../../..")
+
+[node name="2_Rock02" parent="TheLevel/Rocks" instance=ExtResource("18_fxwtp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.0419, -1.69812, 17.0761)
+skeleton = NodePath("../../..")
+
+[node name="2_Rock03" parent="TheLevel/Rocks" instance=ExtResource("18_fxwtp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.0737, -1.69812, 29.4386)
+skeleton = NodePath("../../..")
+
+[node name="2_Rock07" parent="TheLevel/Rocks" instance=ExtResource("18_fxwtp")]
+transform = Transform3D(1.48144, 0.179405, 2.25551, -0.325141, 2.68486, 0, -2.23915, -0.271165, 1.49227, -17.0623, -1.69812, 29.4386)
+skeleton = NodePath("../../..")
+
+[node name="2_Rock04" parent="TheLevel/Rocks" instance=ExtResource("18_fxwtp")]
+transform = Transform3D(0.351578, 0, -1.34905, 0, 1.39411, 0, 1.34905, 0, 0.351578, -29.7733, -1.69812, -32.5467)
+skeleton = NodePath("../../..")
+
+[node name="2_Rock06" parent="TheLevel/Rocks" instance=ExtResource("18_fxwtp")]
+transform = Transform3D(0.911867, 0, -3.49896, 0, 3.61583, 0, 3.49896, 0, 0.911867, -85.4722, -1.69812, -94.491)
+skeleton = NodePath("../../..")
+
+[node name="2_Rock05" parent="TheLevel/Rocks" instance=ExtResource("18_fxwtp")]
+transform = Transform3D(0.252188, 0, -0.967678, 0, 1, 0, 0.967678, 0, 0.252188, 40.0581, -1.69812, -98.3404)
+skeleton = NodePath("../../..")
+
+[node name="3_Rock03" parent="TheLevel/Rocks" instance=ExtResource("19_chq8u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.9821, -1.69812, -14.7429)
+skeleton = NodePath("../../..")
+
+[node name="3_Rock04" parent="TheLevel/Rocks" instance=ExtResource("19_chq8u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -85.4706, 3.10081, -16.0037)
+skeleton = NodePath("../../..")
+
+[node name="3_Rock05" parent="TheLevel/Rocks" instance=ExtResource("19_chq8u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4159, 3.10081, 89.7227)
+skeleton = NodePath("../../..")
+
+[node name="3_Rock06" parent="TheLevel/Rocks" instance=ExtResource("19_chq8u")]
+transform = Transform3D(0.388851, 0, 0.921301, 0, 1, 0, -0.921301, 0, 0.388851, 73.953, -4.11379, -9.45356)
+skeleton = NodePath("../../..")
+
+[node name="4_Rock04" parent="TheLevel/Rocks" instance=ExtResource("20_b7o8g")]
+skeleton = NodePath("../../..")
+
+[node name="4_Rock05" parent="TheLevel/Rocks" instance=ExtResource("20_b7o8g")]
+transform = Transform3D(1.75082, 0, 0, 0, 1.75082, 0, 0, 0, 1.75082, 42.5151, -1.69812, -45.5546)
+skeleton = NodePath("../../..")
+
+[node name="4_Rock06" parent="TheLevel/Rocks" instance=ExtResource("20_b7o8g")]
+transform = Transform3D(1.35799, 0, -1.1051, 0, 1.75082, 0, 1.1051, 0, 1.35799, -64.3326, -1.69812, -55.7566)
+skeleton = NodePath("../../..")
+
+[node name="4_Rock07" parent="TheLevel/Rocks" instance=ExtResource("20_b7o8g")]
+transform = Transform3D(1.05213, 0, -0.856206, 0, 1.35649, 0, 0.856206, 0, 1.05213, -64.3326, -1.69812, 54.0879)
+skeleton = NodePath("../../..")
+
+[node name="4_Rock08" parent="TheLevel/Rocks" instance=ExtResource("20_b7o8g")]
+transform = Transform3D(1.82723, 0, 2.46999, 0, 3.07239, 0, -2.46999, 0, 1.82723, 78.4271, -1.26034, 17.0955)
+skeleton = NodePath("../../..")
+
 [node name="DimetalResourceNode" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6062, -0.833947, -0.126753)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6088, -0.833947, -0.126753)
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("18_rsk5g")
